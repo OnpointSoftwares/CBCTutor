@@ -1,5 +1,6 @@
 import google.generativeai as genai
 import requests
+from django.shortcuts import render
 from bs4 import BeautifulSoup
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.decorators import api_view
@@ -24,6 +25,8 @@ def fetch_cbc_content():
         return f"Error fetching CBC content: {e}"
 
     return "CBC curriculum information is unavailable."
+def HomeView(request):
+    return render(request, "index.html")
 @csrf_exempt  # Exempt from CSRF verification
 @api_view(['POST'])
 def chatbot_view(request):

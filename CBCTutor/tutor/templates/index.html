@@ -74,7 +74,7 @@
             <div class="card-footer">
                 <div class="input-group">
                     <input type="text" id="userInput" class="form-control" placeholder="Type a message...">
-                    <button class="btn send-btn" onclick="sendMessage()">Send</button>
+                    <button class="btn send-btn" onclick="sendMessage()" onkeypress="handleKeyPress(event)">Send</button>
                 </div>
             </div>
         </div>
@@ -103,8 +103,13 @@
                 setTimeout(() => typeWriterEffect(element, text, index + 1), 30);
             }
         }
-
+        function handleKeyPress(event) {
+        if (event.key === "Enter") {
+            sendMessage();
+        }
+    }
         function sendMessage() {
+
             let userInput = document.getElementById("userInput").value;
             if (!userInput.trim()) return;
             appendMessage("You", userInput);
